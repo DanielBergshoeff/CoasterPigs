@@ -1,27 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Nuzzleable : MonoBehaviour
 {
-    private Animator myAnimator;
+    public Animator MyAnimator;
 
     public string TriggerName;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        myAnimator = GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void TriggerAnimation()
     {
-        myAnimator.SetTrigger(TriggerName);
+        MyAnimator.SetTrigger(TriggerName);
     }
 }

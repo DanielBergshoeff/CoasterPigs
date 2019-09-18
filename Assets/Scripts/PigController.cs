@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PigController : MonoBehaviour
@@ -12,29 +10,24 @@ public class PigController : MonoBehaviour
     public GameObject DoorPrompt;
     public GameObject NuzzlePrompt;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         TurnOffPrompts();
         RaycastForward();
     }
 
-    public void TurnOffPrompts()
+    private void TurnOffPrompts()
     {
         DoorPrompt.SetActive(false);
         NuzzlePrompt.SetActive(false);
     }
 
-    public void RaycastForward()
+    private void RaycastForward()
     {
         RaycastHit hit;
-        if (Physics.Raycast(FirstPersonCam.transform.position, FirstPersonCam.transform.forward, out hit, InteractDistance)) //Raycast forward with length InteractDistance
+        //Raycast forward with length InteractDistance
+        Ray ray = new Ray(FirstPersonCam.transform.position, FirstPersonCam.transform.forward);
+        if (Physics.Raycast(ray, out hit, InteractDistance)) 
         {
             //If a door is hit
             if (hit.transform.tag == "Door")
@@ -61,10 +54,12 @@ public class PigController : MonoBehaviour
             {
                 NuzzlePrompt.SetActive(true);
 
+                //If the interaction key is pressed
                 if (Input.GetKeyDown(InteractionKey))
                 {
+                    //Trigger nuzzle animation
                     Nuzzleable nuzzleable = hit.transform.GetComponent<Nuzzleable>();
-                    
+                    nuzzleable.TriggerAnimation();
                 }
             }
         }
