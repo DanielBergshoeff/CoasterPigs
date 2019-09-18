@@ -10,6 +10,7 @@ public class PigController : MonoBehaviour
     public KeyCode InteractionKey;
 
     public GameObject DoorPrompt;
+    public GameObject NuzzlePrompt;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class PigController : MonoBehaviour
     public void TurnOffPrompts()
     {
         DoorPrompt.SetActive(false);
+        NuzzlePrompt.SetActive(false);
     }
 
     public void RaycastForward()
@@ -51,6 +53,18 @@ public class PigController : MonoBehaviour
                         Debug.Log(GameManager.TurnsUsed);
                         door.LoadScene();
                     }
+                }
+            }
+
+            //If a nuzzleable object is hit
+            else if(hit.transform.tag == "Nuzzleable")
+            {
+                NuzzlePrompt.SetActive(true);
+
+                if (Input.GetKeyDown(InteractionKey))
+                {
+                    Nuzzleable nuzzleable = hit.transform.GetComponent<Nuzzleable>();
+                    
                 }
             }
         }

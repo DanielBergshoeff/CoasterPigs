@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fire
   - Door
+  - Nuzzleable
   layers:
   - Default
   - TransparentFX
