@@ -37,6 +37,11 @@ public class BehaviourTree : MonoBehaviour {
     
     private NavMeshAgent myNavMeshAgent;
 
+    public float ScentHeight;
+    public float ScentUpdateTime = 1.0f;
+    private float scentUpdateTimer = 0f;
+    private LineRenderer myLineRenderer;
+
     private void Start() {
         //Player actions
         SetPlayerTargetAction = new ActionNode(SetPlayerTarget);
@@ -63,10 +68,33 @@ public class BehaviourTree : MonoBehaviour {
         Sequence LeaveSequence = new Sequence(new List<Node>() { SetDoorAction, WalkTowardsOrLeaveSelector});
 
         RootSelector = new Selector(new List<Node>() { PlayerSequence,  PenSequence, LeaveSequence});
+
+        myLineRenderer = GetComponent<LineRenderer>();
     }
 
     private void Update() {
         RootSelector.Evaluate();
+        UpdateScentLine();
+    }
+
+    private void UpdateScentLine()
+    {
+        scentUpdateTimer -= Time.deltaTime;
+        if (scentUpdateTimer > 0f)
+            return;
+
+        List<GridNode> nodes = RoomManager.Instance.pathfinding.FindPath(transform.position, RoomManager.Instance.Player.transform.position);
+        myLineRenderer.positionCount = nodes.Count + 2;
+        myLineRenderer.SetPosition(0, transform.position + Vector3.up * ScentHeight);
+
+        for (int i = 1; i < nodes.Count + 1; i++)
+        {
+            myLineRenderer.SetPosition(i, nodes[i - 1].vPosition + Vector3.up * ScentHeight);
+        }
+
+        myLineRenderer.SetPosition(nodes.Count, RoomManager.Instance.Player.transform.position + Vector3.up * ScentHeight);
+
+        scentUpdateTimer = ScentUpdateTime;
     }
 
     /// <summary>
