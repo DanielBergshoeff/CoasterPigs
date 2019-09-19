@@ -14,12 +14,15 @@ public class RoomManager : MonoBehaviour
     public GameObject Player;
     public Pathfinding pathfinding;
 
+    public bool SpawnWorkers = false;
     public float MinTimeSpawn = 60.0f;
     public float MaxTimeSpawn = 300.0f;
     public float TimeTillSpawn = 0f;
 
+    private bool setPlayerPosition = true;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Instance = this;
         Doors = new List<Door>();
@@ -29,12 +32,29 @@ public class RoomManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (setPlayerPosition)
         {
-            SpawnWorker();
+            Debug.Log(Door.comeFromDoor);
+            Debug.Log(Door.doorIdOrigin);
+            if(Door.comeFromDoor)
+            {
+                foreach(Door d in Doors)
+                {
+                    if(d.doorId == Door.doorIdOrigin)
+                    {
+                        Player.GetComponent<CharacterController>().enabled = false;
+                        Player.transform.position = d.transform.position + d.transform.forward * 1f;
+                        Player.GetComponent<CharacterController>().enabled = true;
+                    }
+                }
+            }
+            setPlayerPosition = false;
         }
+
+        if (!SpawnWorkers)
+            return;
 
         TimeTillSpawn -= Time.deltaTime;
         if(TimeTillSpawn <= 0f)

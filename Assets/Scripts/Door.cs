@@ -7,6 +7,9 @@ public class Door : MonoBehaviour
 {
     public bool Locked = false;
     public string SceneToLoad;
+    public int doorId;
+    public static int doorIdOrigin;
+    public static bool comeFromDoor = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,8 @@ public class Door : MonoBehaviour
 
     public void LoadScene()
     {
+        doorIdOrigin = doorId;
+        comeFromDoor = true;
         SceneManager.LoadScene(SceneToLoad);
     }
 }

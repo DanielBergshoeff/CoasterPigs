@@ -43,7 +43,6 @@ public class PigController : MonoBehaviour
                     {
                         //Load new scene and add turn
                         GameManager.TurnsUsed++;
-                        Debug.Log(GameManager.TurnsUsed);
                         door.LoadScene();
                     }
                 }
