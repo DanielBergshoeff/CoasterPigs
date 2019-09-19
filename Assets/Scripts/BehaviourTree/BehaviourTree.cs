@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -38,8 +37,7 @@ public class BehaviourTree : MonoBehaviour {
     
     private NavMeshAgent myNavMeshAgent;
 
-    // Start is called before the first frame update
-    void Start() {
+    private void Start() {
         //Player actions
         SetPlayerTargetAction = new ActionNode(SetPlayerTarget);
         AttackPlayerAction = new ActionNode(AttackPlayer);
@@ -67,8 +65,7 @@ public class BehaviourTree : MonoBehaviour {
         RootSelector = new Selector(new List<Node>() { PlayerSequence,  PenSequence, LeaveSequence});
     }
 
-    // Update is called once per frame
-    void Update() {
+    private void Update() {
         RootSelector.Evaluate();
     }
 
@@ -81,20 +78,26 @@ public class BehaviourTree : MonoBehaviour {
         if (Target == null)
         {
             float distPlayer = Vector3.Distance(transform.position, RoomManager.Instance.Player.transform.position);
-            if (distPlayer < ViewDistance)
-            { //If the player is within range of the staff member
-                Vector3 heading = RoomManager.Instance.Player.transform.position - transform.position;
-                if (Mathf.Abs(Vector3.Angle(transform.forward, heading)) < ViewAngle)
-                { //If the player is within the view angle of the staff member
-                    RaycastHit hit;
-                    if (Physics.Raycast(transform.position, heading.normalized, out hit, ViewDistance))
-                    {
-                        if (hit.transform.gameObject == RoomManager.Instance.Player)
-                        { //If there's nothing in between the staff member and player
-                            Target = RoomManager.Instance.Player;
-                        }
-                    }
-                }
+            //If the player is within range of the staff member
+            if (distPlayer > ViewDistance)
+                return NodeStates.FAILURE;
+
+            Vector3 heading = RoomManager.Instance.Player.transform.position - transform.position;
+            bool inRangeView = Mathf.Abs(Vector3.Angle(transform.forward, heading)) < ViewAngle;
+
+            //If the player is within the view angle of the staff member
+            if (!inRangeView)
+                return NodeStates.FAILURE;
+            
+            RaycastHit hit;
+            bool raycastHit = Physics.Raycast(transform.position, heading.normalized, out hit, ViewDistance);
+
+            if (!raycastHit)
+                return NodeStates.FAILURE;
+
+            if (hit.transform.gameObject == RoomManager.Instance.Player)
+            { //If there's nothing in between the staff member and player
+                Target = RoomManager.Instance.Player;
             }
         }
 
@@ -171,7 +174,8 @@ public class BehaviourTree : MonoBehaviour {
     /// <returns></returns>
     private NodeStates WalkToPen()
     {
-        List<GridNode> nodes = RoomManager.Instance.pathfinding.FindPath(transform.position, VectorMinHeight(toProd.transform.position) + toProd.transform.forward * 1.0f);
+        Vector3 targetPosition = VectorMinHeight(toProd.transform.position) + toProd.transform.forward * 1.0f;
+        List<GridNode> nodes = RoomManager.Instance.pathfinding.FindPath(transform.position, targetPosition);
         if (nodes.Count > 0)
         {
             transform.position = Vector3.MoveTowards(transform.position, nodes[0].vPosition, Time.deltaTime * WalkSpeed);
@@ -210,18 +214,18 @@ public class BehaviourTree : MonoBehaviour {
     /// <returns></returns>
     private NodeStates SetDoor()
     {
-        if (doorToLeaveThrough == null)
+        if (doorToLeaveThrough != null)
+            return NodeStates.SUCCESS;
+
+        doorToLeaveThrough = RoomManager.Instance.Doors[0];
+        float distance = Vector3.Distance(transform.position, VectorMinHeight(RoomManager.Instance.Doors[0].transform.position));
+        foreach (Door door in RoomManager.Instance.Doors)
         {
-            doorToLeaveThrough = RoomManager.Instance.Doors[0];
-            float distance = Vector3.Distance(transform.position, VectorMinHeight(RoomManager.Instance.Doors[0].transform.position));
-            foreach (Door door in RoomManager.Instance.Doors)
+            float tempdist = Vector3.Distance(transform.position, VectorMinHeight(door.transform.position));
+            if(tempdist < distance)
             {
-                float tempdist = Vector3.Distance(transform.position, VectorMinHeight(door.transform.position));
-                if(tempdist < distance)
-                {
-                    distance = tempdist;
-                    doorToLeaveThrough = door;
-                }
+                distance = tempdist;
+                doorToLeaveThrough = door;
             }
         }
 
@@ -234,7 +238,8 @@ public class BehaviourTree : MonoBehaviour {
     /// <returns></returns>
     private NodeStates WalkToDoor()
     {
-        List<GridNode> nodes = RoomManager.Instance.pathfinding.FindPath(transform.position, VectorMinHeight(doorToLeaveThrough.transform.position) + doorToLeaveThrough.transform.forward * 1.0f);
+        Vector3 targetPosition = VectorMinHeight(doorToLeaveThrough.transform.position) + doorToLeaveThrough.transform.forward * 1.0f;
+        List<GridNode> nodes = RoomManager.Instance.pathfinding.FindPath(transform.position, targetPosition);
         if (nodes.Count > 0)
         {
             transform.position = Vector3.MoveTowards(transform.position, nodes[0].vPosition, Time.deltaTime * WalkSpeed);
