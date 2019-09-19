@@ -7,18 +7,18 @@ public class Pathfinding : MonoBehaviour
 
     public Grid GridReference;//For referencing the grid class
 
-    public List<Node> FindPath(Node StartNode, Node TargetNode)
+    public List<GridNode> FindPath(GridNode StartNode, GridNode TargetNode)
     {
-        List<Node> FinalPath = new List<Node>();
+        List<GridNode> FinalPath = new List<GridNode>();
 
-        List<Node> OpenList = new List<Node>();//List of nodes for the open list
-        HashSet<Node> ClosedList = new HashSet<Node>();//Hashset of nodes for the closed list
+        List<GridNode> OpenList = new List<GridNode>();//List of nodes for the open list
+        HashSet<GridNode> ClosedList = new HashSet<GridNode>();//Hashset of nodes for the closed list
 
         OpenList.Add(StartNode);//Add the starting node to the open list to begin the program
 
         while (OpenList.Count > 0)//Whilst there is something in the open list
         {
-            Node CurrentNode = OpenList[0];//Create a node and set it to the first item in the open list
+            GridNode CurrentNode = OpenList[0];//Create a node and set it to the first item in the open list
             for (int i = 1; i < OpenList.Count; i++)//Loop through the open list starting from the second object
             {
                 if (OpenList[i].FCost < CurrentNode.FCost || OpenList[i].FCost == CurrentNode.FCost && OpenList[i].ihCost < CurrentNode.ihCost)//If the f cost of that object is less than or equal to the f cost of the current node
@@ -35,7 +35,7 @@ public class Pathfinding : MonoBehaviour
                 return FinalPath;
             }
 
-            foreach (Node NeighborNode in GridReference.GetNeighboringNodes(CurrentNode))//Loop through each neighbor of the current node
+            foreach (GridNode NeighborNode in GridReference.GetNeighboringNodes(CurrentNode))//Loop through each neighbor of the current node
             {
                 if (!NeighborNode.bIsWall || ClosedList.Contains(NeighborNode))//If the neighbor is a wall or has already been checked
                 {
@@ -62,20 +62,20 @@ public class Pathfinding : MonoBehaviour
     }
 
 
-    public List<Node> FindPath(Vector3 a_StartPos, Vector3 a_TargetPos)
+    public List<GridNode> FindPath(Vector3 a_StartPos, Vector3 a_TargetPos)
     {
-        Node StartNode = GridReference.NodeFromWorldPoint(a_StartPos);//Gets the node closest to the starting position
-        Node TargetNode = GridReference.NodeFromWorldPoint(a_TargetPos);//Gets the node closest to the target position
+        GridNode StartNode = GridReference.NodeFromWorldPoint(a_StartPos);//Gets the node closest to the starting position
+        GridNode TargetNode = GridReference.NodeFromWorldPoint(a_TargetPos);//Gets the node closest to the target position
 
         return FindPath(StartNode, TargetNode);
     }
 
 
 
-    List<Node> GetFinalPath(Node a_StartingNode, Node a_EndNode)
+    List<GridNode> GetFinalPath(GridNode a_StartingNode, GridNode a_EndNode)
     {
-        List<Node> FinalPath = new List<Node>();//List to hold the path sequentially 
-        Node CurrentNode = a_EndNode;//Node to store the current node being checked
+        List<GridNode> FinalPath = new List<GridNode>();//List to hold the path sequentially 
+        GridNode CurrentNode = a_EndNode;//Node to store the current node being checked
 
         while (CurrentNode != a_StartingNode)//While loop to work through each node going through the parents to the beginning of the path
         {
@@ -88,7 +88,7 @@ public class Pathfinding : MonoBehaviour
         return FinalPath;
     }
 
-    int GetManhattenDistance(Node a_nodeA, Node a_nodeB)
+    int GetManhattenDistance(GridNode a_nodeA, GridNode a_nodeB)
     {
         int ix = Mathf.Abs(a_nodeA.iGridX - a_nodeB.iGridX);//x1-x2
         int iy = Mathf.Abs(a_nodeA.iGridY - a_nodeB.iGridY);//y1-y2

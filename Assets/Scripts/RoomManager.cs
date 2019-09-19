@@ -5,10 +5,14 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     public List<Door> Doors;
+    public List<PigPen> Pens;
     public static RoomManager Instance;
 
     public GameObject WorkerPrefab;
     public List<Worker> Workers;
+
+    public GameObject Player;
+    public Pathfinding pathfinding;
 
     public float MinTimeSpawn = 60.0f;
     public float MaxTimeSpawn = 300.0f;
@@ -20,7 +24,7 @@ public class RoomManager : MonoBehaviour
         Instance = this;
         Doors = new List<Door>();
         TimeTillSpawn = Random.Range(MinTimeSpawn, MaxTimeSpawn);
-
+        Pens = new List<PigPen>();
         Workers = new List<Worker>();
     }
 
@@ -45,10 +49,15 @@ public class RoomManager : MonoBehaviour
         Instance.Doors.Add(door);
     }
 
+    public static void AddPigPen(PigPen pigPen)
+    {
+        Instance.Pens.Add(pigPen);
+    }
+
     private void SpawnWorker()
     {
         Worker worker = Instantiate(WorkerPrefab).GetComponent<Worker>();
-        Door door = Doors[Random.Range(0, Doors.Count)];
+        Door door = Doors[Random.Range(0, Doors.Count - 1)];
         worker.transform.position = door.transform.parent.position + door.transform.forward * 1.0f;
     }
 }

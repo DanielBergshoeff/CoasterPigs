@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 973060496248826512}
-  - component: {fileID: 973060496248826515}
+  - component: {fileID: 6725779782494844322}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &973060496248826515
+--- !u!114 &6725779782494844322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +41,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 973060496248826513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20ac0009ae7824549ab45b00e12d4a06, type: 3}
+  m_Script: {fileID: 11500000, guid: d265496fc6f883a48ab3eabe2dbcfd39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pathfinding: {fileID: 0}
+  ViewDistance: 20
+  ViewAngle: 80
+  WalkSpeed: 1
+  RunSpeed: 3
+  AttackRange: 1
   Target: {fileID: 0}
-  Speed: 1
 --- !u!1 &973060496881140094
 GameObject:
   m_ObjectHideFlags: 0

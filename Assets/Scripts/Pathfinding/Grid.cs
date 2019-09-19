@@ -10,8 +10,8 @@ public class Grid : MonoBehaviour
     public float fNodeRadius;//This stores how big each square on the graph will be
     public float fDistanceBetweenNodes;//The distance that the squares will spawn from eachother.
 
-    public Node[,] NodeArray;//The array of nodes that the A Star algorithm uses.
-    public List<Node> FinalPath;//The completed path that the red line will be drawn along
+    public GridNode[,] NodeArray;//The array of nodes that the A Star algorithm uses.
+    public List<GridNode> FinalPath;//The completed path that the red line will be drawn along
 
 
     public float fNodeDiameter;//Twice the amount of the radius (Set in the start function)
@@ -28,31 +28,31 @@ public class Grid : MonoBehaviour
 
     private void Update()
     {
-        foreach (Node n in NodeArray)
+        foreach (GridNode n in NodeArray)
         {
             n.timeNotSeen += Time.deltaTime;
         }
     }
 
-    public List<List<Node>> CreateGridPortions(int amtOfPortions)
+    public List<List<GridNode>> CreateGridPortions(int amtOfPortions)
     {
         int nodesAdded = 0;
 
         int availableNodes = 0;
-        foreach (Node n in NodeArray)
+        foreach (GridNode n in NodeArray)
         {
             if (n.bIsWall)
                 availableNodes++;
         }
 
 
-        List<List<Node>> nodeLists = new List<List<Node>>(amtOfPortions);
+        List<List<GridNode>> nodeLists = new List<List<GridNode>>(amtOfPortions);
         for (int i = 0; i < nodeLists.Capacity; i++)
         {
-            nodeLists.Add(new List<Node>());
+            nodeLists.Add(new List<GridNode>());
         }
 
-        foreach (Node n in NodeArray)
+        foreach (GridNode n in NodeArray)
         {
             if (n.bIsWall == true && !InList(n, nodeLists))
             {
@@ -67,9 +67,9 @@ public class Grid : MonoBehaviour
         return nodeLists;
     }
 
-    private void AddNodesFromNeighbour(Node n, ref List<List<Node>> nodeLists, ref int nodesAdded, int amtOfPortions, int availableNodes)
+    private void AddNodesFromNeighbour(GridNode n, ref List<List<GridNode>> nodeLists, ref int nodesAdded, int amtOfPortions, int availableNodes)
     {
-        List<Node> neighbours = GetNeighboringNodes(n);
+        List<GridNode> neighbours = GetNeighboringNodes(n);
         for (int i = 0; i < neighbours.Count; i++)
         {
             if (neighbours[i].bIsWall == true && !InList(neighbours[i], nodeLists))
@@ -82,11 +82,11 @@ public class Grid : MonoBehaviour
         }
     }
 
-    private bool InList(Node n, List<List<Node>> nodeLists)
+    private bool InList(GridNode n, List<List<GridNode>> nodeLists)
     {
-        foreach (List<Node> list in nodeLists)
+        foreach (List<GridNode> list in nodeLists)
         {
-            foreach (Node node in list)
+            foreach (GridNode node in list)
             {
                 if (node == n)
                 {
@@ -100,7 +100,7 @@ public class Grid : MonoBehaviour
 
     void CreateGrid()
     {
-        NodeArray = new Node[iGridSizeX, iGridSizeY];//Declare the array of nodes.
+        NodeArray = new GridNode[iGridSizeX, iGridSizeY];//Declare the array of nodes.
         Vector3 bottomLeft = transform.position - Vector3.right * vGridWorldSize.x / 2 - Vector3.forward * vGridWorldSize.y / 2;//Get the real world position of the bottom left of the grid.
         for (int x = 0; x < iGridSizeX; x++)//Loop through the array of nodes.
         {
@@ -118,15 +118,15 @@ public class Grid : MonoBehaviour
                     Wall = false;//Object is not a wall
                 }
 
-                NodeArray[x, y] = new Node(Wall, worldPoint, x, y);//Create a new node in the array.
+                NodeArray[x, y] = new GridNode(Wall, worldPoint, x, y);//Create a new node in the array.
             }
         }
     }
 
     //Function that gets the neighboring nodes of the given node.
-    public List<Node> GetNeighboringNodes(Node a_NeighborNode)
+    public List<GridNode> GetNeighboringNodes(GridNode a_NeighborNode)
     {
-        List<Node> NeighborList = new List<Node>();//Make a new list of all available neighbors.
+        List<GridNode> NeighborList = new List<GridNode>();//Make a new list of all available neighbors.
         int icheckX;//Variable to check if the XPosition is within range of the node array to avoid out of range errors.
         int icheckY;//Variable to check if the YPosition is within range of the node array to avoid out of range errors.
 
@@ -147,7 +147,7 @@ public class Grid : MonoBehaviour
     }
 
     //Gets the closest node to the given world position.
-    public Node NodeFromWorldPoint(Vector3 a_vWorldPos)
+    public GridNode NodeFromWorldPoint(Vector3 a_vWorldPos)
     {
 
         float ixPos = ((a_vWorldPos.x - this.transform.position.x + vGridWorldSize.x / 2) / vGridWorldSize.x);
@@ -170,9 +170,9 @@ public class Grid : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, new Vector3(vGridWorldSize.x, 1, vGridWorldSize.y));//Draw a wire cube with the given dimensions from the Unity inspector
     }
 
-    public List<Node> GetAvailableNodes()
+    public List<GridNode> GetAvailableNodes()
     {
-        List<Node> availableNodes = new List<Node>();
+        List<GridNode> availableNodes = new List<GridNode>();
         for (int i = 0; i < NodeArray.GetLength(0); i++)
         {
             for (int j = 0; j < NodeArray.GetLength(1); j++)
