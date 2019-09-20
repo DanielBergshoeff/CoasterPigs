@@ -77,6 +77,9 @@ public class BehaviourTree : MonoBehaviour {
             currentScentNode = 0;
         }
 
+        if (scentNodes.Count < 1)
+            return;
+
         scentUpdateTimer -= Time.deltaTime;
         float part = ScentUpdateTime - scentUpdateTimer;
         ScentPosition.position = Vector3.MoveTowards(ScentPosition.position, scentNodes[currentScentNode].vPosition, Time.deltaTime * ScentSpeed);

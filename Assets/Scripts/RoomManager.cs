@@ -36,8 +36,6 @@ public class RoomManager : MonoBehaviour
     {
         if (setPlayerPosition)
         {
-            Debug.Log(Door.comeFromDoor);
-            Debug.Log(Door.doorIdOrigin);
             if(Door.comeFromDoor)
             {
                 foreach(Door d in Doors)
