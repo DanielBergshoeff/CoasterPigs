@@ -37,10 +37,14 @@ public class BehaviourTree : MonoBehaviour {
     
     private NavMeshAgent myNavMeshAgent;
 
-    public float ScentHeight;
+    public float ScentHeight = 2.0f;
     public float ScentUpdateTime = 1.0f;
+    public float ScentSpeed = 10.0f;
+    public Transform ScentPosition;
     private float scentUpdateTimer = 0f;
     private LineRenderer myLineRenderer;
+    private List<GridNode> scentNodes;
+    private int currentScentNode = 0;
 
     private void Start() {
         //Player actions
@@ -79,22 +83,25 @@ public class BehaviourTree : MonoBehaviour {
 
     private void UpdateScentLine()
     {
-        scentUpdateTimer -= Time.deltaTime;
-        if (scentUpdateTimer > 0f)
-            return;
-
-        List<GridNode> nodes = RoomManager.Instance.pathfinding.FindPath(transform.position, RoomManager.Instance.Player.transform.position);
-        myLineRenderer.positionCount = nodes.Count + 2;
-        myLineRenderer.SetPosition(0, transform.position + Vector3.up * ScentHeight);
-
-        for (int i = 1; i < nodes.Count + 1; i++)
+        if (scentUpdateTimer <= 0f)
         {
-            myLineRenderer.SetPosition(i, nodes[i - 1].vPosition + Vector3.up * ScentHeight);
+            scentNodes = RoomManager.Instance.pathfinding.FindPath(transform.position, RoomManager.Instance.Player.transform.position);
+            scentUpdateTimer = ScentUpdateTime;
+            ScentPosition.position = transform.position + Vector3.up * ScentHeight;
+            currentScentNode = 0;
         }
 
-        myLineRenderer.SetPosition(nodes.Count, RoomManager.Instance.Player.transform.position + Vector3.up * ScentHeight);
+        scentUpdateTimer -= Time.deltaTime;
+        float part = ScentUpdateTime - scentUpdateTimer;
+        ScentPosition.position = Vector3.MoveTowards(ScentPosition.position, scentNodes[currentScentNode].vPosition, Time.deltaTime * ScentSpeed);
 
-        scentUpdateTimer = ScentUpdateTime;
+        if((ScentPosition.position - scentNodes[currentScentNode].vPosition).sqrMagnitude < 0.01f)
+        {
+            if(currentScentNode + 1 < scentNodes.Count)
+                currentScentNode++;
+        }
+
+        
     }
 
     /// <summary>
