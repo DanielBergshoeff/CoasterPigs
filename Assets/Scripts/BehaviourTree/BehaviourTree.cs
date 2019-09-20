@@ -19,24 +19,10 @@ public class BehaviourTree : MonoBehaviour {
     public Door doorToLeaveThrough;
 
     private Selector RootSelector;
-
-    //Player actions
-    private ActionNode SetPlayerTargetAction;
-    private ActionNode AttackPlayerAction;
-    private ActionNode RunToPlayerAction;
-
-    //Pen actions
-    private ActionNode SetPenTargetAction;
-    private ActionNode WalkToPenAction;
-    private ActionNode ProdPigAction;
-
-    //Leave room actions
-    private ActionNode SetDoorAction;
-    private ActionNode WalkToDoorAction;
-    private ActionNode LeaveRoomAction;
     
     private NavMeshAgent myNavMeshAgent;
 
+    [Header("Scent")]
     public float ScentHeight = 2.0f;
     public float ScentUpdateTime = 1.0f;
     public float ScentSpeed = 10.0f;
@@ -48,19 +34,19 @@ public class BehaviourTree : MonoBehaviour {
 
     private void Start() {
         //Player actions
-        SetPlayerTargetAction = new ActionNode(SetPlayerTarget);
-        AttackPlayerAction = new ActionNode(AttackPlayer);
-        RunToPlayerAction = new ActionNode(RunToPlayer);
+        ActionNode SetPlayerTargetAction = new ActionNode(SetPlayerTarget);
+        ActionNode AttackPlayerAction = new ActionNode(AttackPlayer);
+        ActionNode RunToPlayerAction = new ActionNode(RunToPlayer);
 
         //Pen actions
-        SetPenTargetAction = new ActionNode(SetPenTarget);
-        WalkToPenAction = new ActionNode(WalkToPen);
-        ProdPigAction = new ActionNode(ProdPig);
+        ActionNode SetPenTargetAction = new ActionNode(SetPenTarget);
+        ActionNode WalkToPenAction = new ActionNode(WalkToPen);
+        ActionNode ProdPigAction = new ActionNode(ProdPig);
 
         //Leave room actions
-        SetDoorAction = new ActionNode(SetDoor);
-        WalkToDoorAction = new ActionNode(WalkToDoor);
-        LeaveRoomAction = new ActionNode(LeaveRoom);
+        ActionNode SetDoorAction = new ActionNode(SetDoor);
+        ActionNode WalkToDoorAction = new ActionNode(WalkToDoor);
+        ActionNode LeaveRoomAction = new ActionNode(LeaveRoom);
 
         Selector RunTowardsOrAttackSelector = new Selector(new List<Node>() { AttackPlayerAction, RunToPlayerAction});
         Sequence PlayerSequence = new Sequence(new List<Node>() { SetPlayerTargetAction, RunTowardsOrAttackSelector });
