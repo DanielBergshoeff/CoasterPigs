@@ -60,6 +60,7 @@ public class BehaviourTree : MonoBehaviour {
         RootSelector = new Selector(new List<Node>() { PlayerSequence,  PenSequence, LeaveSequence});
 
         myLineRenderer = GetComponent<LineRenderer>();
+        myAnimator = GetComponent<Animator>();
     }
 
     private void Update() {
