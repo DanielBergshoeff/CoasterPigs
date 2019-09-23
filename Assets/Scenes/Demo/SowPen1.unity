@@ -863,7 +863,7 @@ PrefabInstance:
     - target: {fileID: 7895390516597699703, guid: 6025970d31aee8341a53f6333cfbeef8,
         type: 3}
       propertyPath: SceneToLoad
-      value: RedScene
+      value: SowPen2
       objectReference: {fileID: 0}
     - target: {fileID: 7895390516597699703, guid: 6025970d31aee8341a53f6333cfbeef8,
         type: 3}
@@ -3933,6 +3933,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7895390516597699703, guid: 6025970d31aee8341a53f6333cfbeef8,
+        type: 3}
+      propertyPath: SceneToLoad
+      value: Start
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6025970d31aee8341a53f6333cfbeef8, type: 3}

@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Demo/SowPen1.unity
     guid: 291e98cad79496d40a040f15ba02298c
+  - enabled: 1
+    path: Assets/Scenes/Demo/SowPen2.unity
+    guid: df7a9449e3811a44e951e563cb69caf7
   m_configObjects: {}
