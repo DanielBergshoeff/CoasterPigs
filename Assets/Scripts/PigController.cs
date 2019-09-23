@@ -9,6 +9,11 @@ public class PigController : MonoBehaviour
 
     public GameObject DoorPrompt;
     public GameObject NuzzlePrompt;
+    public GameObject GameOverText;
+
+    private void Start() {
+        GameOverText.SetActive(false);
+    }
 
     private void Update()
     {
@@ -73,5 +78,9 @@ public class PigController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void GameOver() {
+        GameOverText.SetActive(true);
     }
 }

@@ -89,8 +89,6 @@ public class BehaviourTree : MonoBehaviour {
             if(currentScentNode + 1 < scentNodes.Count)
                 currentScentNode++;
         }
-
-        
     }
 
     /// <summary>
@@ -101,9 +99,49 @@ public class BehaviourTree : MonoBehaviour {
     {
         if (Target == null)
         {
-            float distPlayer = Vector3.Distance(transform.position, RoomManager.Instance.Player.transform.position);
-            //If the player is within range of the staff member
-            if (distPlayer > ViewDistance)
+            float dist = ViewDistance;
+            foreach(PigPen pen in RoomManager.Instance.Pens) {
+                if(!pen.MamaPig.Free)
+                    continue;
+                float distPig = Vector3.Distance(transform.position, pen.MamaPig.transform.position);
+
+                //If the pig is not within viewing range of the staff member
+                if (distPig > ViewDistance)
+                    continue;
+
+                Debug.Log("Pig in viewing distance");
+
+                Vector3 pigHeading = pen.MamaPig.transform.position - transform.position;
+                bool pigInRangeView = Mathf.Abs(Vector3.Angle(transform.forward, pigHeading)) < ViewAngle;
+
+                if (!pigInRangeView)
+                    continue;
+
+                Debug.Log("Pig in view angle");
+
+                RaycastHit pigHit;
+                bool raycastHitPig = Physics.Raycast(transform.position, pigHeading.normalized, out pigHit, ViewDistance);
+
+                if (!raycastHitPig)
+                    continue;
+
+                Debug.Log("Pig hit by raycast");
+                Debug.Log(pigHit.transform.gameObject);
+                Debug.Log(distPig);
+
+                if(pigHit.transform.gameObject == pen.MamaPig.gameObject && distPig < dist) {
+                    Debug.Log("Set pig target");
+                    Target = pen.MamaPig.gameObject;
+                }
+            }
+
+            float distTarget = Vector3.Distance(transform.position, RoomManager.Instance.Player.transform.position);
+
+            if (Target != null && distTarget > dist)
+                return NodeStates.SUCCESS;
+
+            //If the player is not within viewing range of the staff member
+            if (distTarget > ViewDistance)
                 return NodeStates.FAILURE;
 
             Vector3 heading = RoomManager.Instance.Player.transform.position - transform.position;
@@ -112,15 +150,14 @@ public class BehaviourTree : MonoBehaviour {
             //If the player is within the view angle of the staff member
             if (!inRangeView)
                 return NodeStates.FAILURE;
-            
+
             RaycastHit hit;
             bool raycastHit = Physics.Raycast(transform.position, heading.normalized, out hit, ViewDistance);
 
             if (!raycastHit)
                 return NodeStates.FAILURE;
 
-            if (hit.transform.gameObject == RoomManager.Instance.Player)
-            { //If there's nothing in between the staff member and player
+            if (hit.transform.gameObject == RoomManager.Instance.Player) { //If there's nothing in between the staff member and player
                 Target = RoomManager.Instance.Player;
             }
         }
@@ -140,6 +177,12 @@ public class BehaviourTree : MonoBehaviour {
         if(Vector3.Distance(transform.position, RoomManager.Instance.Player.transform.position) < AttackRange)
         {
             //Trigger or continue attack animation
+            if (Target == RoomManager.Instance.Player)
+                RoomManager.Instance.Player.GetComponent<PigController>().GameOver();
+            else {
+                Destroy(Target);
+                Target = null;
+            }
             return NodeStates.SUCCESS;
         }
 
