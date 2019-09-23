@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PigPen : MonoBehaviour
 {
@@ -24,8 +25,13 @@ public class PigPen : MonoBehaviour
     public CycleStage CurrentStage = CycleStage.NewSow;
     public int StageDifference = 0;
 
+    public Nuzzleable nuzzleable;
+
     void Start() {
         RoomManager.AddPigPen(this);
+        if (nuzzleable.NuzzleEvent == null)
+            nuzzleable.NuzzleEvent = new UnityEvent();
+        nuzzleable.NuzzleEvent.AddListener(FreePig);
 
         int turn = GameManager.TurnsUsed - StageDifference;
         int inseminationCycle = 0;
@@ -77,7 +83,12 @@ public class PigPen : MonoBehaviour
         if (inseminationCycle > 2)
             inseminationCross3.SetActive(true);
     }
+
+    public void FreePig() {
+        MamaPig.Free = true;
+    }
 }
+
 
 public enum CycleStage {
     NewSow,

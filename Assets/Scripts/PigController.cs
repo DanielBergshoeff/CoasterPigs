@@ -61,6 +61,17 @@ public class PigController : MonoBehaviour
                     nuzzleable.TriggerAnimation();
                 }
             }
+
+            //If a pig is hit
+            else if(hit.transform.tag == "Pig") {
+                NuzzlePrompt.SetActive(true);
+
+                //If the interaction key is pressed
+                if (Input.GetKeyDown(InteractionKey)) {
+                    Pig pig = hit.transform.GetComponent<Pig>();
+                    pig.Nuzzled = true;
+                }
+            }
         }
     }
 }
