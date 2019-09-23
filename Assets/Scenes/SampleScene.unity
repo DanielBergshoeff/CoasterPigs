@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.20050065, g: 0.20050065, b: 0.28688514, a: 1}
+  m_IndirectSpecularColor: {r: Infinity, g: 0.1458841, b: 0.22916177, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1697,11 +1697,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7233862630088994966, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: pathfinding
       value: 
@@ -1714,6 +1709,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Worker (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233862630088994966, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6725779782494844322, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
         type: 3}
@@ -2835,41 +2835,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pig
       objectReference: {fileID: 0}
-    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.9227276
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Text
-      value: PRESS E TO OPEN DOOR
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.84931326
-      objectReference: {fileID: 0}
     - target: {fileID: 1592327766282301515, guid: f81fbf4d1b9287d4dabac55d685eee05,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -2939,6 +2904,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RenderingPath
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.9227276
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Text
+      value: PRESS E TO OPEN DOOR
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.84931326
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f81fbf4d1b9287d4dabac55d685eee05, type: 3}

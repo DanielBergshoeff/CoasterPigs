@@ -38,6 +38,11 @@ public class RoomManager : MonoBehaviour
         {
             if(Door.comeFromDoor)
             {
+                if(Pens.Count > 0) {
+
+                }
+
+                //Set player position based on door id
                 foreach(Door d in Doors)
                 {
                     if(d.doorId == Door.doorIdOrigin)
