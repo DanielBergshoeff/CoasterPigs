@@ -248,7 +248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3723803777070733621}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.42000008, y: 1, z: -2.1266668}
+  m_LocalPosition: {x: -1.084, y: 0.047, z: -1.28}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_Children: []
   m_Father: {fileID: 5131194413407143189}
@@ -266,7 +266,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 10
-  m_Range: 10
+  m_Range: 5.65
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1249,6 +1249,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Nuzzleable
       objectReference: {fileID: 0}
+    - target: {fileID: -5178661895559278292, guid: 69195723dfb0f3542806ac369ba70927,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4207129237711637564, guid: 2168470d182364d4e9e37aedd498c10f,
+        type: 3}
     - target: {fileID: -4216859302048453862, guid: 69195723dfb0f3542806ac369ba70927,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1445,6 +1451,12 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -5178661895559278292, guid: 54ac53278fe822742a241f13a496c651,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 3497914494016197662, guid: 2168470d182364d4e9e37aedd498c10f,
+        type: 3}
     - target: {fileID: -4216859302048453862, guid: 54ac53278fe822742a241f13a496c651,
         type: 3}
       propertyPath: m_LocalPosition.x
