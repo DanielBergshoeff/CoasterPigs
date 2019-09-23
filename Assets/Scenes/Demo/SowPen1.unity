@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.20050065, g: 0.20050065, b: 0.28688514, a: 1}
+  m_IndirectSpecularColor: {r: 0.119546466, g: 0.11952038, b: 0.20286499, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1697,11 +1697,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7233862630088994966, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: pathfinding
       value: 
@@ -1714,6 +1709,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Worker (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 973060496248826513, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233862630088994966, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6725779782494844322, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
         type: 3}
@@ -1738,7 +1743,7 @@ PrefabInstance:
     - target: {fileID: 973060496248826512, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.34
+      value: -67.7
       objectReference: {fileID: 0}
     - target: {fileID: 973060496248826512, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
         type: 3}
@@ -2445,7 +2450,7 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: -4.5, y: 0, z: 2.38}
+      - m_Value: {x: -61.859997, y: 0, z: 2.38}
         m_Name: StartPosition
         m_Overridden: 1
       - m_Value: {x: 0, y: 0, z: 0}
@@ -2563,6 +2568,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Worker
       objectReference: {fileID: 0}
+    - target: {fileID: 973060496248826513, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6725779782494844322, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
         type: 3}
       propertyPath: ScentHeight
@@ -2581,7 +2591,7 @@ PrefabInstance:
     - target: {fileID: 973060496248826512, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5
+      value: -61.859997
       objectReference: {fileID: 0}
     - target: {fileID: 973060496248826512, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
         type: 3}
@@ -2835,41 +2845,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pig
       objectReference: {fileID: 0}
-    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.9227276
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Text
-      value: PRESS E TO OPEN DOOR
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.84931326
-      objectReference: {fileID: 0}
     - target: {fileID: 1592327766282301515, guid: f81fbf4d1b9287d4dabac55d685eee05,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -2939,6 +2914,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RenderingPath
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086601908060987316, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.9227276
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Text
+      value: PRESS E TO OPEN DOOR
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8817187042454620592, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.84931326
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f81fbf4d1b9287d4dabac55d685eee05, type: 3}
