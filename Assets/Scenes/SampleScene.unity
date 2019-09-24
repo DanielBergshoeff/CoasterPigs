@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: Infinity, g: 0.1458841, b: 0.22916177, a: 1}
+  m_IndirectSpecularColor: {r: 0.20050065, g: 0.20050065, b: 0.28688514, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2719,21 +2719,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Worker
       objectReference: {fileID: 0}
-    - target: {fileID: 6725779782494844322, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
-        type: 3}
-      propertyPath: ScentHeight
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6725779782494844322, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
-        type: 3}
-      propertyPath: ScentSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6725779782494844322, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
-        type: 3}
-      propertyPath: ScentUpdateTime
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 973060496248826512, guid: 1d0dcfdfccdad5e43b21000a9aeec45d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2986,15 +2971,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2887193155988969338, guid: f81fbf4d1b9287d4dabac55d685eee05,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7707058675847340839, guid: f81fbf4d1b9287d4dabac55d685eee05,
         type: 3}
       propertyPath: m_Name
       value: Pig
+      objectReference: {fileID: 0}
+    - target: {fileID: 2887193155988969338, guid: f81fbf4d1b9287d4dabac55d685eee05,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592327766282301515, guid: f81fbf4d1b9287d4dabac55d685eee05,
         type: 3}

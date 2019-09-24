@@ -60,7 +60,7 @@ public class BehaviourTree : MonoBehaviour {
         RootSelector = new Selector(new List<Node>() { PlayerSequence,  PenSequence, LeaveSequence});
 
         myLineRenderer = GetComponent<LineRenderer>();
-        myAnimator = GetComponent<Animator>();
+        myAnimator = GetComponentInChildren<Animator>();
     }
 
     private void Update() {
@@ -196,6 +196,7 @@ public class BehaviourTree : MonoBehaviour {
     /// <returns></returns>
     private NodeStates RunToPlayer()
     {
+        myAnimator.SetTrigger("Run");
         List<GridNode> nodes = RoomManager.Instance.pathfinding.FindPath(transform.position, Target.transform.position);
         if (nodes.Count > 0)
         {
@@ -242,6 +243,7 @@ public class BehaviourTree : MonoBehaviour {
     /// <returns></returns>
     private NodeStates WalkToPen()
     {
+        myAnimator.SetTrigger("Walk");
         Vector3 targetPosition = VectorMinHeight(toProd.transform.position) + toProd.transform.forward * 1.0f;
         List<GridNode> nodes = RoomManager.Instance.pathfinding.FindPath(transform.position, targetPosition);
         if (nodes.Count > 0)
@@ -306,6 +308,7 @@ public class BehaviourTree : MonoBehaviour {
     /// <returns></returns>
     private NodeStates WalkToDoor()
     {
+        myAnimator.SetTrigger("Walk");
         Vector3 targetPosition = VectorMinHeight(doorToLeaveThrough.transform.position) + doorToLeaveThrough.transform.forward * 1.0f;
         List<GridNode> nodes = RoomManager.Instance.pathfinding.FindPath(transform.position, targetPosition);
         if (nodes.Count > 0)
