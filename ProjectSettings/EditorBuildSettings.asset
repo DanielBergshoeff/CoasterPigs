@@ -11,7 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BlueScene.unity
     guid: a2b9cf21292159240b2bc7588bfb7df2
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/RedScene.unity
-    guid: 40a97a036ada1a64f99d04d53850b026
+    path: Assets/Scenes/Demo/Start.unity
+    guid: 213df482a0ee65f4598378a794ad4006
+  - enabled: 1
+    path: Assets/Scenes/Demo/SowPen1.unity
+    guid: 291e98cad79496d40a040f15ba02298c
+  - enabled: 1
+    path: Assets/Scenes/Demo/SowPen2.unity
+    guid: df7a9449e3811a44e951e563cb69caf7
   m_configObjects: {}
