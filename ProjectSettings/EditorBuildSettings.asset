@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BlueScene.unity
     guid: a2b9cf21292159240b2bc7588bfb7df2
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/RedScene.unity
+    guid: 50b6bde5ad4a25a439f3999ef60a7ea6
   - enabled: 1
     path: Assets/Scenes/Demo/Start.unity
     guid: 213df482a0ee65f4598378a794ad4006
