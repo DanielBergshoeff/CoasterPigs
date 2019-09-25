@@ -62,8 +62,8 @@ public class RoomManager : MonoBehaviour
         TimeTillSpawn -= Time.deltaTime;
         if(TimeTillSpawn <= 0f)
         {
-            SpawnWorker();
             TimeTillSpawn = Random.Range(MinTimeSpawn, MaxTimeSpawn);
+            SpawnWorker();
         }
     }
 
@@ -79,8 +79,8 @@ public class RoomManager : MonoBehaviour
 
     private void SpawnWorker()
     {
-        Worker worker = Instantiate(WorkerPrefab).GetComponent<Worker>();
+        BehaviourTree worker = Instantiate(WorkerPrefab).GetComponent<BehaviourTree>();
         Door door = Doors[Random.Range(0, Doors.Count - 1)];
-        worker.transform.position = door.transform.parent.position + door.transform.forward * 1.0f;
+        worker.transform.position = door.transform.position;
     }
 }

@@ -3349,7 +3349,7 @@ MonoBehaviour:
   SpawnWorkers: 1
   MinTimeSpawn: 60
   MaxTimeSpawn: 300
-  TimeTillSpawn: 0
+  TimeTillSpawn: 5
 --- !u!4 &1931128441
 Transform:
   m_ObjectHideFlags: 0
